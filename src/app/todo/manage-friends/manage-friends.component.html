@@ -1,0 +1,64 @@
+
+
+<div class="shadow-lg p-4 mb-4 bg-white" style="height:70px">Friend Zone</div>
+
+
+<div class="container" style="border:1px solid lightgrey;border-top:none">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Friends</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Requests Sent</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Request Received</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div *ngFor="let user of allUsers; let users of friendRequestSent">
+
+    <div class="row userList" *ngIf="user.userId !== userId && user.usrId != users.friendId" >
+      <div class="col-md-6">
+        <ul>
+          <li>{{user.firstName}}</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-primary btn-sm" (click)="addFriend(user.userId, user.firstName)">+ connect</button>
+      </div>
+    </div> 
+         
+  
+    </div>
+  </div>
+      
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="row userList"  *ngFor="let current of friendRequestSent">
+        <div class="col-md-6" *ngIf="current.friendId !== this.userId">
+          <ul>
+            <li>{{current.friendName}}</li>
+          </ul>
+        </div>
+        <div class="col-md-6" *ngIf="current.friendId !== this.userId">
+          <button class="btn btn-danger btn-sm" (click)="cancelFriendRequest(current.friendId, current.friendName)">cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+      <div class="row userList"  *ngFor="let current of friendRequestRecieved">
+        <div class="col-md-6" *ngIf="current.friendId !== this.userId">
+          <ul>
+            <li>{{current.friendName}}</li>
+          </ul>
+        </div>
+        <div class="col-md-6" *ngIf="current.friendId !== this.userId">
+            <button class="btn btn-info btn-sm" (click)="acceptFriendRequest(current.friendId, current.friendName)">accept</button>
+            <span style="padding-left:20px;"><button class="btn btn-danger btn-sm" (click)="rejectFriendRequest(current.friendId, current.friendName)" >reject</button></span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

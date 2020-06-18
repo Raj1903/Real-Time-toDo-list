@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    
+  <a class="navbar-brand" href="index.html">To-Do-List</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+          <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" [routerLink]="['/login']">Login</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+  <div class="container-fluid my-bg">
+    <div class="row">
+
+     
+     <div class="col-md-5 col-sm-6 offset-sm-3 col-6 offset-3  box text-truncate">         
+        <h3 class="margin-top-10 margin-bottom-10 margin-left-10 margin-right-10"  style="color:rgba(49, 20, 119, 0.979)"  position = "center" >Please fill the details</h3>
+        <div class="row">
+          <div class="col-md-10 offset-md-1 col-sm-6 offset-sm-3" style=" overflow: hidden;">
+              <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+               
+                <div class="row">
+                  <div class="col-md-6">
+                      <label for="firstName" style="color:rgb(253, 250, 250)" text = "bold" >
+                          First Name<br>
+                          <input type="text" formControlName="firstName" id="firstName" >
+                        </label> 
+                        <div class="alert text"  *ngIf="!signupForm.controls['firstName'].valid && signupForm.controls['firstName'].touched">Please enter the credentials</div>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="lastName" style="color: white" text = "bold">
+                          Last Name <br>
+                          <input type="text" formControlName="lastName" id="lastName">
+                        </label>   
+                        <div class="alert text "  *ngIf="!signupForm.controls['lastName'].valid && signupForm.controls['lastName'].touched">Please fill the credentials</div>
+                  </div>
+                </div> 
+                <br>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="email" style="color: white" text = "bold">
+                      Email <br>
+                      <input type="email" formControlName="email"  id="email">
+                    </label>
+                    <div class="alert text"  *ngIf="!signupForm.controls['email'].valid && signupForm.controls['email'].touched">Please fill the credentials</div>
+                  </div>
+                  <div class="col-md-6">
+                      <label for="password" style="color: white" text = "bold">
+                        Password<br>
+                        <input type="password" id="password" formControlName="password">
+                      </label>
+                      <div class="alert text" *ngIf="!signupForm.controls['password'].valid && signupForm.controls['password'].touched">Please fill the credentials</div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-6">
+                      <label for="country" style="color: white" text = "bold">
+                        Country <br>
+                        <select name="country" id="country" formControlName="country">
+                          <option>Select</option>
+                          <option *ngFor="let country of countries">{{country.name}}</option>
+                        </select>
+                      </label>
+                      <div class="alert text"  *ngIf="!signupForm.controls['country'].valid && signupForm.controls['country'].touched">Please fill the credentials</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="mobile" style="color: white" text = "bold">
+                          Mobile<br>
+                          <input type="number" id="mobile" formControlName="mobile">
+                        </label>
+                        <div class="alert text "  *ngIf="!signupForm.controls['mobile'].valid && signupForm.controls['mobile'].touched">Pease fill the credentials</div>
+                      </div>
+                  </div><br>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1" text = "bold" style="color: yellow;">Signup with terms and condition</label>
+                  </div>
+                 
+                      <button class="btn btn-outline-primary btn-block" type="submit" [disabled]="!signupForm.valid">&nbsp;&nbsp;Signup&nbsp;&nbsp;  </button>
+                     
+                  <br><br>
+
+                 
+               </form>
+                
+          </div>
+        </div><br><br><br>
+      </div>
+    
+
+
+
+
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container text-center">
+      <span class="text-muted">&copy;  All Right Reserved By God</span>
+  </div>
+</footer>
