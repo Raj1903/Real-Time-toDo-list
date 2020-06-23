@@ -1,32 +1,49 @@
 
+ <nav class="navbar navbar-expand-lg navbar-dark bg-drak">
+  <a class="navbar-brand" style="color:black;" href="index.html">To Do List</a>
 
-<div class="shadow-lg p-4 mb-4 bg-white" style="height:70px">Friend Zone</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" style="color:black;" [routerLink]="['/todo/single-user']">
+         My Profile
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" style="color:black;"  >Hi,  {{userInfo.firstName}} {{userInfo.lastName}}</a>
+      </li>
+        
+    </ul>
 
-<div class="container" style="border:1px solid lightgrey;border-top:none">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Friends</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Requests Sent</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Request Received</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
+   <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+    
+            <a> 
+              <button class="btn btn-red" (click)="logOut()">Log Out</button>
+            </a>
+          
+      </li>
+    </ul> 
+  </div>
+</nav>
+<div class="container">
+   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
   <div *ngFor="let user of allUsers; let users of friendRequestSent">
 
     <div class="row userList" *ngIf="user.userId !== userId && user.usrId != users.friendId" >
       <div class="col-md-6">
         <ul>
-          <li>{{user.firstName}}</li>
+          <li>{{user.firstName}}{{user.lastName}}</li>
         </ul>
       </div>
       <div class="col-md-6">
-        <button class="btn btn-primary btn-sm" (click)="addFriend(user.userId, user.firstName)">+ connect</button>
+        <button class="btn btn-outline-primary btn-block" (click)="addFriend(user.userId, user.firstName, user.lastName)">connect</button>
       </div>
     </div> 
          
@@ -42,8 +59,8 @@
           </ul>
         </div>
         <div class="col-md-6" *ngIf="current.friendId !== this.userId">
-          <button class="btn btn-danger btn-sm" (click)="cancelFriendRequest(current.friendId, current.friendName)">cancel</button>
-        </div>
+          <button class="btn btn-outline-primary btn-block" (click)="cancelFriendRequest(current.friendId, current.friendName)">cancel</button>
+        </div> 
       </div>
     </div>
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
@@ -54,8 +71,8 @@
           </ul>
         </div>
         <div class="col-md-6" *ngIf="current.friendId !== this.userId">
-            <button class="btn btn-info btn-sm" (click)="acceptFriendRequest(current.friendId, current.friendName)">accept</button>
-            <span style="padding-left:20px;"><button class="btn btn-danger btn-sm" (click)="rejectFriendRequest(current.friendId, current.friendName)" >reject</button></span>
+            <button class="btn btn-outline-primary btn-block" (click)="acceptFriendRequest(current.friendId, current.friendName)">accept</button>
+            <span style="padding-left:20px;"><button class="btn btn-outline-primary btn-block" (click)="rejectFriendRequest(current.friendId, current.friendName)" >reject</button></span>
           
         </div>
       </div>
