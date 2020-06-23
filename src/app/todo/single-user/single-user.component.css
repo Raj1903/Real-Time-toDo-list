@@ -1,0 +1,13 @@
+body {
+    height: 99vh;
+    border: 1px solid black;
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+  
+  
+  .my-box {
+    /*  border: 1px solid lightblue; */
+    background-color: #a03116;
+    border-top-left-radius: 5px;
+  
